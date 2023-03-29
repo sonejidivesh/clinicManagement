@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <form (ngSubmit)="onSubmit()" #appointmentForm="ngForm">
+        <div class="form-group">
+          <label for="patientName">Patient Name</label>
+          <input type="text" class="form-control" id="patientName" name="patientName" [(ngModel)]="appointment.patientName" required>
+        </div>
+        <div class="form-group">
+          <label for="appointmentDateTime">Appointment Date and Time</label>
+          <input type="datetime-local" class="form-control" id="appointmentDateTime" name="appointmentDateTime" [(ngModel)]="appointment.appointmentDateTime" required>
+        </div>
+        <div class="form-group">
+          <label for="doctorId">Doctor</label>
+          <input type="text" class="form-control" id="doctorId" name="doctorId" [value]="doctor.id" [(ngModel)]="appointment.doctorId" required>
+        </div>
+        <div class="form-group">
+          <label for="appointmentReason">Reason for Appointment</label>
+          <textarea class="form-control" id="appointmentReason" name="appointmentReason" [(ngModel)]="appointment.appointmentReason" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="appointmentNotes">Notes</label>
+          <textarea class="form-control" id="appointmentNotes" name="appointmentNotes" [(ngModel)]="appointment.appointmentNotes" rows="3"></textarea>
+        </div>
+        <div class="form-group p-2">
+        <button type="submit" class="btn btn-primary ">Book Appointment</button>
+        </div>
+      </form>
+  
+    </div>
+  
+  </div>
+</div>
+
+
