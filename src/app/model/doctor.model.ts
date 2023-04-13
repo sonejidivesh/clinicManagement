@@ -1,9 +1,11 @@
 export interface IDoctor{
     id: number
     doctorName:string;
-    experience : string;  
+    experience : string;
+    specilazation:string  
     gender: string;
-    phoneNumber: string;
+    phone: string;
     email: string;
+    isActive: boolean;
     
     }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Appointment } from '../../../model/appointment.model';
 import { IDoctor } from '../../../model/doctor.model';
 import { DoctorService } from '../../doctor-list.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -18,17 +19,11 @@ export class AppointmentComponent {
   constructor(private doctorservice:DoctorService) { }
 
 
-  onSubmit(): void {
+  onSubmit(form:NgForm): void {
 
     this.appointment.doctorId = this.doctor.id;
-    console.log(this.appointment);
-    this.doctorservice.bookAppointment(this.appointment).subscribe(res => {
-    //  this.message= res.message;
-    },
-    error => {
-      this.message= error.message;
-    });
-
+    this.doctorservice.bookAppointment(this.appointment).subscribe((v)=>{
+    alert(v.message)});
   }
 
  

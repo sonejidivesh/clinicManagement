@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="patientName">Patient Name</label>
+      <input type="text" class="form-control" id="patientName" formControlName="patientName">
+    </div>
+    <div class="form-group">
+      <label for="patientName">Reason</label>
+      <input type="text" class="form-control" id="reason" formControlName="reason">
+    </div>
+    
+      <label for="medication">Medications Prescribed</label>
+      <div class="row" >
+        <div class="col-xs-12" formArrayName="medicninelistForm">
+          <div class="row " *ngFor="let medicinforrm of controls ; let i = index"  [formGroupName]="i" style="margin-top: 10px;">
+
+              <div class="col-sm-6">
+                <select name="" id="" class="form-control" formControlName="medicationId">
+                  <option *ngFor="let medicine of medicationList"  value="{{medicine.ID}}" >{{medicine.name}}</option>
+                </select>
+              </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" formControlName="dosage">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" formControlName="frequency" >
+                </div>
+                
+              <div class="col-sm-2">
+                <button class="btn btn-danger" [disabled]="Created">X</button>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+      <hr/>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="addMedicine()" [disabled]="Created"  >Add Medication</button>
+      <hr/>
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-sm"   [disabled]="Created">{{submitText}}</button>
+      </div>
+     
+  </form>

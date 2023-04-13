@@ -1,0 +1,34 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Patient Name</th>
+        <th>Appointment Time</th>
+        <th>Prescription</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointmentList | paginate: { itemsPerPage: 10, currentPage: page } ">
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.patientName }}</td>
+        <td>{{ pipe.transform(appointment.appointmentDateTime,'short')}}</td>
+        <td><button class="btn btn-info" type="button" (click) ="openAppointmentModal(appointment)" >Prescription</button></td>
+        
+      </tr>
+    </tbody>
+  </table>
+  
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+  <ng-template #prescriptionModal>
+    <div class="modal-header">
+      <h5 class="modal-title">Prescription for {{appointment.patientName}}</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     
+      <app-prescription [appointment] = "appointment"></app-prescription>
+    </div>
+  </ng-template>

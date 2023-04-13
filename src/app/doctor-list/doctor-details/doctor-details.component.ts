@@ -20,6 +20,10 @@ export class DoctorDetailsComponent implements OnInit {
 
 ngOnInit(): void {
       this.getDetails(this.route.snapshot.params['id']);
+
+      this.doctorService.appointmentSub.subscribe(()=>{
+        this.closeAppointmentModal();
+      })
   }
 
 
@@ -31,6 +35,10 @@ ngOnInit(): void {
 
   openAppointmentModal() {
     this.modalRef = this.modalService.show(this.appointmentModal);
+  }
+
+  closeAppointmentModal() {
+    this.modalService.hide();
   }
 
 }
