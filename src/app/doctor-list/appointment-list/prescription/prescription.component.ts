@@ -161,12 +161,22 @@ addMedicine(){
 }
 
 
+DeleteMedicine(index:number){
+  (this.form.get('medicninelistForm') as FormArray).removeAt(index);
+}
+
+
+
 addVaccination(){
   const vacineControl = new FormGroup({
     'VacinationId': new FormControl(),
     'Dose': new FormControl(),
   });
   (this.form.get('vaccineListForm') as FormArray).push(vacineControl);
+}
+
+DeleteVaccination(index:number){
+  (this.form.get('vaccineListForm') as FormArray).removeAt(index);
 }
 
 addRadiology(){
@@ -176,6 +186,13 @@ addRadiology(){
 
   (this.form.get('radiologyListForm') as FormArray).push(radioControl);
 }
+
+DeleteRadiology(index:number){
+  (this.form.get('radiologyListForm') as FormArray).removeAt(index);
+}
+
+
+
 
 
 
