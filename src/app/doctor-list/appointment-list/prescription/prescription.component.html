@@ -8,6 +8,7 @@
       <input type="text" class="form-control" id="reason" formControlName="reason">
     </div>
     
+    <hr/>
       <label for="medication">Medications Prescribed</label>
       <div class="row" >
         <div class="col-xs-12" formArrayName="medicninelistForm">
@@ -26,14 +27,70 @@
                 </div>
                 
               <div class="col-sm-2">
-                <button class="btn btn-danger" [disabled]="Created">X</button>
+                <button class="btn btn-danger" type="button" [disabled]="Created">X</button>
               </div>
           </div>
         </div>
         
       </div>
       <hr/>
-      <button type="button" class="btn btn-secondary btn-sm" (click)="addMedicine()" [disabled]="Created"  >Add Medication</button>
+      <label for="medication">Vacination Prescribed</label>
+      <div class="row" >
+        <div class="col-xs-12" formArrayName="vaccineListForm" >
+          <div class="row "   *ngFor="let vaccinForm of vaccontrols ; let i = index"  [formGroupName]="i" style="margin-top: 10px;">
+
+              <div class="col-sm-6">
+                <select name="" id="" class="form-control" formControlName="VacinationId">
+                  <option *ngFor="let vaccine of vaccineList"  value="{{vaccine.VaccineId}}" >{{vaccine.VaccineName}}</option>
+                </select>
+              </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" formControlName="Dose">
+                </div>              
+              <div class="col-sm-2">
+                <button class="btn btn-danger" type="button" [disabled]="Created">X</button>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+      <hr/>
+      <label for="medication">Medical Test Prescribed</label>
+      <div class="row" >
+        <div class="col-xs-12" formArrayName="radiologyListForm" >
+          <div class="row "  *ngFor="let radio of radiocontrols ; let i = index"  [formGroupName]="i" style="margin-top: 10px;">
+
+              <div class="col-sm-10">
+                <select name="" id="" class="form-control" formControlName="TestId">
+                  <option *ngFor="let radio of radiologyList"  value="{{radio.testID}}" >{{radio.testName}}</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <button class="btn btn-danger" type="button" [disabled]="Created">X</button>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+      <hr/>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-secondary btn-sm" (click)="addMedicine()" [disabled]="Created"  >Add Medication</button>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-secondary btn-sm" (click)="addVaccination()" [disabled]="Created" >Add Vaccine</button>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-secondary btn-sm" (click)="addRadiology()" [disabled]="Created" >Add Medical Test</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- <button type="button" class="btn btn-secondary btn-sm" (click)="addVaccination()"  >Add Medication</button> -->
       <hr/>
       <div class="row">
         <button type="submit" class="btn btn-primary btn-sm"   [disabled]="Created">{{submitText}}</button>

@@ -33,7 +33,7 @@ export class MedicineSerivice{
     }
 
     addPrescription(pescrition:Prescrition) : Observable<any>{
-        return this.http.post<any>(this.personalUrl+"/api/Prescription",pescrition,this.httpOptions).pipe(
+        return this.http.post<any>(this.testUrl+"/api/Prescription",pescrition,this.httpOptions).pipe(
             tap(()=>{
             this.medicineSub.next()
         })
@@ -42,7 +42,7 @@ export class MedicineSerivice{
 
 
     getPrescription(appointmentId:number){
-        return this.http.get<Prescrition>(this.personalUrl+"/api/Prescription/"+appointmentId,this.httpOptions)
+        return this.http.get<Prescrition>(this.testUrl+"/api/Prescription/"+appointmentId,this.httpOptions)
     }
 
     

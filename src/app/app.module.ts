@@ -15,6 +15,8 @@ import { AppointmentListComponent } from './doctor-list/appointment-list/appoint
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { PrescriptionComponent } from './doctor-list/appointment-list/prescription/prescription.component';
+import {DataTablesModule} from 'angular-datatables';
+
 
 
 
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    DataTablesModule,
     ModalModule.forRoot(),
     //this will register the routes
     RouterModule.forRoot(appRoutes)

@@ -3,12 +3,14 @@ import { DoctorService } from '../doctor-list.service';
 import { Appointment } from '../../model/appointment.model';
 import { DatePipe } from '@angular/common';
 import { EventEmitter } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ViewChild, TemplateRef } from '@angular/core';
 import{MedicineSerivice} from '../medicine-List.service';
 import { IDoctor } from 'src/app/model/doctor.model';
 import{ActivatedRoute} from '@angular/router';
+
+
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
@@ -18,6 +20,7 @@ import{ActivatedRoute} from '@angular/router';
 
 export class AppointmentListComponent implements OnInit, OnDestroy {
   @Input() doctor: IDoctor = {} as IDoctor;
+  dtoptions: DataTables.Settings = {};
   modalRef!: BsModalRef;
   @ViewChild('prescriptionModal') appointmentModal!: TemplateRef<AppointmentListComponent>;
   page: number = 1;
@@ -25,14 +28,21 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
   appointmentList: Appointment[] = [];
   appointmentListSubscription : Subscription | undefined;
   medicinSUb:Subscription | undefined; 
-  
+  dtTrigger:Subject<any> = new Subject();
+
   pipe = new DatePipe('en-US');
   constructor(private doctorService:DoctorService ,  private modalService: BsModalService , private medicalService:MedicineSerivice , private route:ActivatedRoute){}
 
 ngOnInit(): void {
   
+  this.dtoptions = {
+    pagingType: 'full_numbers',
+  };
+
   this.doctorService.appointmentSub.subscribe(() => {
     this.getAppointmentList();
+    
+    
     });
 
   this.getAppointmentList();
@@ -48,6 +58,7 @@ ngOnInit(): void {
 getAppointmentList(){
   this.appointmentListSubscription = this.doctorService.getAllAppoiintments(this.route.snapshot.params['id']).subscribe( data=> {
     this.appointmentList = data
+    this.dtTrigger.next(null);
   });;
 }
 
