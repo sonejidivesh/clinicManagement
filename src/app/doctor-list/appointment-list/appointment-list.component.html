@@ -1,10 +1,10 @@
-<table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table mt-5">
+<table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table ">
     <thead>
       <tr>
         <th>Id</th>
         <th>Patient Name</th>
         <th>Appointment Time</th>
-        <th>Prescription</th>
+        <th *ngIf="isLoggedIn">Prescription</th>
       </tr>
     </thead>
     <tbody>
@@ -12,7 +12,7 @@
         <td>{{ appointment.id }}</td>
         <td>{{ appointment.patientName }}</td>
         <td>{{ pipe.transform(appointment.appointmentDateTime,'short')}}</td>
-        <td><button class="btn btn-info" type="button" (click) ="openAppointmentModal(appointment)" >Prescription</button></td>
+        <td *ngIf="isLoggedIn"><button class="btn btn-info" type="button" (click) ="openAppointmentModal(appointment)" >Prescription</button></td>
         
       </tr>
     </tbody>

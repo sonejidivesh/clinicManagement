@@ -23,12 +23,11 @@ import {DataTablesModule} from 'angular-datatables';
 
 //these are the routes
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent},
   { path: 'doctors', component: DoctorListComponent },
   { path: 'doctors/:id', component: DoctorDetailsComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'appointment-list', component: AppointmentListComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/doctors', pathMatch: 'full' }
 ];
 
 

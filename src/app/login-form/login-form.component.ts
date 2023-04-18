@@ -27,7 +27,7 @@ export class LoginFormComponent {
 
     })).subscribe((data) => {
         this.router.navigate(['doctors',data.doctorDetails.id]);
-        console.log(data);
+        // console.log(data);
       }
     );
   }
